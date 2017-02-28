@@ -21,3 +21,13 @@ be hanami c
 ```
 
 4. display link url to show action
+
+generate
+```
+be hanami g action web 'links#new'
+be hanami g action web 'links#create'
+```
+
+```
+be hanami routes
+```
