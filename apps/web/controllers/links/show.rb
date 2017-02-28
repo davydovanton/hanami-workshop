@@ -3,7 +3,11 @@ module Web::Controllers::Links
     include Web::Action
 
     def call(params)
-      redirect_to 'google.com'
+      if link = LinkRepository.new.find(params[:id])
+        redirect_to link.url
+      else
+        self.body = 'Not found'
+      end
     end
   end
 end
