@@ -3,6 +3,5 @@
 #
 # Example:
 # get '/hello', to: ->(env) { [200, {}, ['Hello from Hanami!']] }
-post '/links', to: 'links#create'
-get '/links/new', to: 'links#new'
-get '/links/:id', to: 'links#show'
+root to: 'links#new'
+resources :links, only: %i[show create]
