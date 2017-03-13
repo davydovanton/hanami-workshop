@@ -1,7 +1,6 @@
 module Web::Controllers::Links
   class Create
     include Web::Action
-    include Hanami::Action::Session
 
     params do
       required(:link).schema do
@@ -10,25 +9,21 @@ module Web::Controllers::Links
     end
 
     def call(params)
-      if params.valid?
-        params[:link][:key] = generate_random_key
-        link = LinkRepository.new.create(params[:link])
-        flash[:info] = "your link: site.com/link/#{link.key}"
-      else
-        flash[:error] = 'invalid link'
-      end
-
+      create_link
       redirect_to routes.root_path
     end
 
   private
 
-    def generate_random_key
-      SecureRandom.hex[0..4]
+    def create_link
+      return unless params.valid?
+
+      params[:link][:key] = generate_random_key
+      LinkRepository.new.create(params[:link])
     end
 
-    def verify_csrf_token?
-      false
+    def generate_random_key
+      SecureRandom.hex[0..4]
     end
   end
 end

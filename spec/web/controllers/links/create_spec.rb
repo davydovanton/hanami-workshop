@@ -19,12 +19,6 @@ RSpec.describe Web::Controllers::Links::Create do
     it 'redirects to root page' do
       expect(action.call(params)).to redirect_to('/')
     end
-
-    it 'displays link in flash' do
-      action.call(params)
-      flash = action.exposures[:flash]
-      expect(flash[:info]).to match repo.last.key
-    end
   end
 
   context 'when url is invalid' do
@@ -36,12 +30,6 @@ RSpec.describe Web::Controllers::Links::Create do
 
     it 'redirects to root page' do
       expect(action.call(params)).to redirect_to('/')
-    end
-
-    it 'displays error in flash' do
-      action.call(params)
-      flash = action.exposures[:flash]
-      expect(flash[:error]).to eq 'invalid link'
     end
   end
 end
