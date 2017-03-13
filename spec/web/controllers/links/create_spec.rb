@@ -6,6 +6,8 @@ RSpec.describe Web::Controllers::Links::Create do
 
   let(:repo) { LinkRepository.new }
 
+  after { repo.clear }
+
   context 'when url is valid' do
     let(:params) { { link: { url: 'http://google.com' } } }
 

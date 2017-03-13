@@ -11,7 +11,7 @@ module Web::Controllers::Links
 
     def call(params)
       if params.valid?
-        params[:link][:key] = '123'
+        params[:link][:key] = generate_random_key
         link = LinkRepository.new.create(params[:link])
         flash[:info] = "your link: site.com/link/#{link.key}"
       else
@@ -19,6 +19,16 @@ module Web::Controllers::Links
       end
 
       redirect_to routes.root_path
+    end
+
+  private
+
+    def generate_random_key
+      SecureRandom.hex[0..4]
+    end
+
+    def verify_csrf_token?
+      false
     end
   end
 end
