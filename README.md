@@ -31,3 +31,13 @@ be hanami g action web 'links#create'
 ```
 be hanami routes
 ```
+
+```
+be hanami g action web 'links#create
+```
+
+5. generate admin app
+
+```
+be hanami g app admin
+```
