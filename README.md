@@ -40,4 +40,8 @@ be hanami g action web 'links#create
 
 ```
 be hanami g app admin
+be hanami g model account
+
+be hanami db migrate
+HANAMI_ENV=test be hanami db migrate
 ```
