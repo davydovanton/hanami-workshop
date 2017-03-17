@@ -54,3 +54,8 @@ be hanami g action admin 'dashboard#index'
 be hanami g action admin 'links#new'
 be hanami g action admin 'links#create'
 ```
+
+7. add new columns to link
+```
+be hanami g migration add_accounts_and_clicks_to_links<Paste>
+```
