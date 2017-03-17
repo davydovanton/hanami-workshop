@@ -6,4 +6,12 @@ RSpec.describe Admin::Views::Links::Index do
   let(:view)      { described_class.new(template, exposures) }
   let(:rendered)  { view.render }
 
+  let(:repo) { LinkRepository.new }
+
+  after { repo.clear }
+
+  describe '#links' do
+    before { repo.create(url: 'test') }
+    it { expect(view.links).to eq repo.all }
+  end
 end
