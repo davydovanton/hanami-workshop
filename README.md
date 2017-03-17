@@ -45,3 +45,12 @@ be hanami g model account
 be hanami db migrate
 HANAMI_ENV=test be hanami db migrate
 ```
+
+6. generate admin dashboard and links
+
+```
+be hanami g action admin 'dashboard#index'
+
+be hanami g action admin 'links#new'
+be hanami g action admin 'links#create'
+```
