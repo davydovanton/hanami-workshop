@@ -1,11 +1,42 @@
 require_relative '../../../../apps/admin/controllers/links/create'
 
 RSpec.describe Admin::Controllers::Links::Create do
-  let(:action) { described_class.new }
-  let(:params) { Hash[] }
+  let(:action)  { described_class.new }
+  let(:session) { { account: Account.new(id: 1, admin: true) } }
+  let(:params)  { { **link_params, 'rack.session' => session } }
+  let(:link_params) { {} }
 
-  it 'is successful' do
-    response = action.call(params)
-    expect(response[0]).to eq 200
+  let(:repo) { LinkRepository.new }
+
+  after { repo.clear }
+
+  context 'when admin is not login' do
+    let(:session) { {} }
+    it { expect(action.call(params)).to redirect_to('/admin') }
+  end
+
+  context 'when url is valid' do
+    let(:link_params) { { link: { url: 'http://google.com' } } }
+
+    it 'creates new link object' do
+      expect{ action.call(params) }.to change { repo.all.to_a.size }.by(1)
+      expect(repo.last.key).to_not be nil
+    end
+
+    it 'redirects to root page' do
+      expect(action.call(params)).to redirect_to('/admin/links')
+    end
+  end
+
+  context 'when url is invalid' do
+    let(:link_params) { { link: { url: '' } } }
+
+    it 'does not create new link object' do
+      expect{ action.call(params) }.to change { repo.all.to_a.size }.by(0)
+    end
+
+    it 'redirects to root page' do
+      expect(action.call(params)).to redirect_to('/admin/links')
+    end
   end
 end

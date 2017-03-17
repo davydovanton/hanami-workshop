@@ -4,8 +4,7 @@ RSpec.describe Admin::Controllers::Links::New do
   let(:action) { described_class.new }
   let(:params) { Hash[] }
 
-  it 'is successful' do
-    response = action.call(params)
-    expect(response[0]).to eq 200
+  context 'when admin is not login' do
+    it { expect(action.call(params)).to redirect_to('/admin') }
   end
 end

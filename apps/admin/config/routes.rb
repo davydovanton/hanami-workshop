@@ -1,4 +1,2 @@
-post '/links', to: 'links#create'
-get '/links/new', to: 'links#new'
-get '/links', to: 'links#index'
+resources :links, only: %i[index new create]
 root to: 'dashboard#index'
