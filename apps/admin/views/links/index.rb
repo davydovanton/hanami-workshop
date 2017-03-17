@@ -5,5 +5,9 @@ module Admin::Views::Links
     def links
       LinkRepository.new.all
     end
+
+    def short_url(link)
+      "http://localhost:2300/link/#{link.key}"
+    end
   end
 end

@@ -14,4 +14,9 @@ RSpec.describe Admin::Views::Links::Index do
     before { repo.create(url: 'test') }
     it { expect(view.links).to eq repo.all }
   end
+
+  describe '#short_url' do
+    let(:link) { Link.new(key: 'test') }
+    it { expect(view.short_url(link)).to eq "http:&#x2F;&#x2F;localhost:2300&#x2F;link&#x2F;test" }
+  end
 end
