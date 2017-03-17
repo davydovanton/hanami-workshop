@@ -32,6 +32,6 @@ RSpec.describe Admin::Views::Links::Index do
 
   describe '#short_url' do
     let(:link) { Link.new(key: 'test') }
-    it { expect(view.short_url(link)).to eq "http:&#x2F;&#x2F;localhost:2300&#x2F;link&#x2F;test" }
+    it { expect(view.short_url(link)).to eq "http:&#x2F;&#x2F;localhost:2300&#x2F;links&#x2F;test" }
   end
 end

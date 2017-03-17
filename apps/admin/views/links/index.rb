@@ -7,7 +7,7 @@ module Admin::Views::Links
     end
 
     def short_url(link)
-      "http://localhost:2300/link/#{link.key}"
+      "http://localhost:2300/links/#{link.key}"
     end
   end
 end
