@@ -11,6 +11,12 @@ RSpec.describe Web::Controllers::Links::Show do
 
   context 'when link exist' do
     it { expect(action.call(params)).to redirect_to('google.com') }
+
+    it 'change link count' do
+      expect(repo.find(link.id).clicks).to eq 0
+      action.call(params)
+      expect(repo.find(link.id).clicks).to eq 1
+    end
   end
 
   context 'when link does not exist' do
