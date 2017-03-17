@@ -1,1 +1,1 @@
-resources :links, only: %i[show create]
+get '/:id', to: 'links#show'
