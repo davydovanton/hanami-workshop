@@ -2,3 +2,12 @@ nav.navbar.navbar-default
   .container-fluid
     .navbar-header
       a.navbar-brand href="/admin" Hanami demo
+
+    - if current_account.registred?
+      .collapse.navbar-collapse
+        ul.nav.navbar-nav
+          li
+            a href="#" Links
+
+    - else
+      a.btn.btn-danger.navbar-btn href="/auth/github" role="button" Sign in
