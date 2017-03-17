@@ -6,6 +6,10 @@ gem 'hanami-model', '~> 1.0.0.beta1'
 
 gem 'pg'
 
+# auth
+gem 'roda'
+gem 'omniauth-github'
+
 gem 'slim'
 gem 'hanami-bootstrap', github: 'davydovanton/hanami-bootstrap'
 
