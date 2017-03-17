@@ -6,5 +6,10 @@ html
     = favicon
     = stylesheet 'bootstrap'
   body
+    nav.navbar.navbar-default
+      .container-fluid
+        .navbar-header
+          a.navbar-brand href="/admin" Hanami demo
+
     = yield
     = javascript 'bootstrap'
