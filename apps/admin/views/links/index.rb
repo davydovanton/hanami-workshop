@@ -3,7 +3,7 @@ module Admin::Views::Links
     include Admin::View
 
     def links
-      LinkRepository.new.all
+      LinkRepository.new.for_account(current_account.id)
     end
 
     def short_url(link)

@@ -19,6 +19,7 @@ module Admin::Controllers::Links
       return unless params.valid?
 
       params[:link][:key] = generate_random_key
+      params[:link][:account_id] = current_account.id
       LinkRepository.new.create(params[:link])
     end
 
